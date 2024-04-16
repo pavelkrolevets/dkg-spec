@@ -81,12 +81,14 @@ func (sp *SignedProof) UnmarshalJSON(data []byte) error {
 }
 
 type operatorJSON struct {
+	Addr   string `json:"ip"`
 	ID     uint64 `json:"id"`
 	PubKey string `json:"operatorKey"`
 }
 
 func (op *Operator) MarshalJSON() ([]byte, error) {
 	return json.Marshal(operatorJSON{
+		Addr:   string(op.Addr),
 		ID:     op.ID,
 		PubKey: string(op.PubKey),
 	})
@@ -98,6 +100,7 @@ func (op *Operator) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	var err error
+	op.Addr = []byte(operator.Addr)
 	op.ID = operator.ID
 	op.PubKey = []byte(operator.PubKey)
 	return err
