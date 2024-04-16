@@ -100,9 +100,8 @@ func (op *Operator) UnmarshalJSON(data []byte) error {
 	if err := json.Unmarshal(data, &operator); err != nil {
 		return err
 	}
-	var err error
 	op.Addr = []byte(strings.TrimRight(operator.Addr, "/"))
 	op.ID = operator.ID
 	op.PubKey = []byte(operator.PubKey)
-	return err
+	return nil
 }
