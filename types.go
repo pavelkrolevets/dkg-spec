@@ -1,6 +1,8 @@
 package spec
 
 type Operator struct {
+	// ip:port
+	Addr   []byte `ssz-max:"4096"`
 	ID     uint64
 	PubKey []byte `ssz-max:"2048"`
 }
